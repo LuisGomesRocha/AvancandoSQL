@@ -111,68 +111,25 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ### Features
 
 - [x] Precisamos saber todo mundo que respondeu uma avaliação com um título específico?
+
+``` 
+
+select distinct(t3.ALUNO_id_aluno), t1.nome, t2.titulo as TIT_AVALIACAO from aluno as t1, avaliacao as t2 ,cognition as t3
+			where t1.id_aluno = t3.ALUNO_id_aluno         and
+                t2.id_avaliacao = t3.QUESTOES_AVALIACAO_id_avaliacao
+                and
+                t2.titulo like "%AUTO%";
+``` 
+
 - [x] Precisamos saber quantas respostas foram dadas por avaliação
 
- Precisamos saber quantas respostas foram dadas por avaliação 
+``` 
+
 SELECT AV.TITULO,COUNT(CN.*) FROM AVALIACAO AV INNER JOIN QUESTOES QT ON AV.ID_AVALIACAO = QT.AVALIACAO_ID_AVALIACAO 
 									INNER JOIN COGNITION CN ON QT.id_questao = CN.QUESTOES_id_questao
 									GROUP BY AV.TITULO;
 
-- [x] Precisamos da nota média da autocorreção por avaliação
-
-<h3 align="justify">
-   O que você faria para representar essa estrutura no banco? 
-</h3>
-
- ``` 
-CREATE DATABASE CADASTRO
-USE CADASTRO
-CREATE TABLE ALUNOS (
-ID INT PRIMARY KEY NOT NULL,
-NOME VARCHAR (30),
-EMAIL VARCHAR (30),
-IDADE INT  (3)
-)
-GO
-
 ``` 
 
-<h3 align="justify">
-   O que você precisa fazer agora para inserir novos(as) alunos(as) nessa tabela? 
-</h3>
+- [x] Precisamos da nota média da autocorreção por avaliação
 
-   ``` 
- INSERT INTO ALUNOS (NOME, EMAIL, IDADE) VALUES ('Luis Gomes', 'luisgomes@gmail.com', '36');
-	
-  ``` 
-
-
-<h3 align="justify">
-   E para apagar um registro pelo email?
-</h3>
-
-   ``` 
-DELETE FROM ALUNOS WHERE EMAIL =  'luisgomes@gmail.com'
-	
-  ``` 
-
-
-<h3 align="justify">
-   Agora você precisa buscar todos os(as) alunos(as) que tem Zup no email. Como você faria?
-</h3>
-
-   ``` 
-   SELECT * FROM ALUNOS WHERE email LIKE '%@zup.com.br%';
-
-  ``` 
-
-<h3 align="justify">
-   E para fechar é necessário que alunos e alunas sejam listados pela sua idade em ordem crescente
-</h3>
- 
-   ``` 
-SELECT * FROM ALUNOS
-WHERE  idade
-ORDER BY  ASC;
-	
-  ```
