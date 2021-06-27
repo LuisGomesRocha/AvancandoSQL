@@ -113,12 +113,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 - [x] Precisamos saber todo mundo que respondeu uma avaliação com um título específico?
 
 ``` 
+SELECT DISTINCT(T3.ALUNO_ID_ALUNO), T1.NOME, T2.TITULO AS TIT_AVALIACAO FROM ALUNO AS T1, AVALIACAO AS T2 ,COGNITION AS T3
+WHERE T1.ID_ALUNO = T3.ALUNO_ID_ALUNO         AND
+T2.ID_AVALIACAO = T3.QUESTOES_AVALIACAO_ID_AVALIACAO   AND
+T2.TITULO LIKE "%AUTO%";
 
-select distinct(t3.ALUNO_id_aluno), t1.nome, t2.titulo as TIT_AVALIACAO from aluno as t1, avaliacao as t2 ,cognition as t3
-			where t1.id_aluno = t3.ALUNO_id_aluno         and
-                t2.id_avaliacao = t3.QUESTOES_AVALIACAO_id_avaliacao
-                and
-                t2.titulo like "%AUTO%";
 ``` 
 
 - [x] Precisamos saber quantas respostas foram dadas por avaliação
@@ -126,8 +125,8 @@ select distinct(t3.ALUNO_id_aluno), t1.nome, t2.titulo as TIT_AVALIACAO from alu
 ``` 
 
 SELECT AV.TITULO,COUNT(CN.*) FROM AVALIACAO AV INNER JOIN QUESTOES QT ON AV.ID_AVALIACAO = QT.AVALIACAO_ID_AVALIACAO 
-									INNER JOIN COGNITION CN ON QT.id_questao = CN.QUESTOES_id_questao
-									GROUP BY AV.TITULO;
+INNER JOIN COGNITION CN ON QT.id_questao = CN.QUESTOES_id_questao
+GROUP BY AV.TITULO;
 
 ``` 
 
