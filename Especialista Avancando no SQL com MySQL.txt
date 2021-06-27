@@ -1,0 +1,46 @@
+Consultas SQL: Avançando no SQL com MySQL
+
+
+
+Cenário:
+
+Somos muitos alunos e alunas aqui no Bootcamp. Em função de todas as avaliações respondidas, muitos dados são gerados. E agora temos alguns desafios para você:
+
+
+Dado que todo(a) aluno(a) tem um email (máximo de 30 caracteres),nome (máximo de 30 caracteres) e idade (entre 1 e 100). O que você faria para representar essa estrutura no banco?
+Dentro do bootcamp temos também um conjunto de avaliações que são respondidas pelas pessoas. Toda avaliação tem um título e uma descrição do que precisa ser feito. O que você faria para representar essa estrutura no banco?
+Cada aluno(a) responde uma ou mais avaliações que chamamos de cognitive walkthrough, ela tem que descrever os passos da solução dela para determinada situação problema. Toda resposta tem um campo aberto para que a pessoa consiga descrever a solução dela. É necessário que toda resposta seja linkada com a pessoa que a respondeu e também com a avaliação relativa àquela resposta. O que você faria para representar essa estrutura no banco de dados?
+Além de responder sua avaliação, a pessoa também responde um outro formulário onde ela corrige sua resposta em função da resposta de um mentor(a). Essa correção sempre tem uma nota de 1 a 10 e está linkada com a avaliação respondida pela própria pessoa. O que você faria para representar essa estrutura no banco de dados?
+Agora que você montou a estrutura, temos algumas consultas que precisamos fazer.
+Precisamos saber todo mundo que respondeu uma avaliação com um título específico?
+Precisamos saber quantas respostas foram dadas por avaliação
+Precisamos da nota média da autocorreção por avaliação
+
+
+
+O que seria bom ver nessa resposta?
+
+
+
+Peso 0.5: Tabela de alunos com os campos necessários para representar alunos(as) no banco de dados da aplicação.
+Peso 0.5: Tabelas para representar avaliações
+Peso 1: Select com join entre resposta, aluno e avaliação para saber todo mundo que respondeu
+Peso 2: Tabela de respostas com chave estrangeira para aluno e avaliação
+Peso 2: Tabela de auto correção com chave estrangeira para resposta
+Peso 2: Select com join entre resposta e avaliação, com group by pelo título da avaliação
+Peso 2: avaliação e count nas respostas
+Peso 2: Select com join entre autocorreção, resposta e avaliação, com group by pelo título da avaliação e avg na nota da autocorreção.
+
+
+Resposta do Especialista:
+
+Objetivo de aprendizado: Criar uma tabela com create table com nome alunos definindo os campos de nome, email e idade.
+Motivo da escolha: Utilizo aqui o create table que é o comando necessário para criar novas tabelas no banco de dados.
+Crio a tabela de avaliações com título e descrição
+Crio a tabela de resposta com o campo aberto da resposta, chave estrangeira para avaliação e chave estrangeira para aluno
+Crio a tabela de auto correção com a nota e chave estrangeira para resposta
+Preciso inserir dados em todas elas para realizar a consulta
+Agora faço um select na tabela de respostas com join para avaliação e aluno para conseguir todo mundo que respondeu determinada avaliação.
+Agora faço um select na tabela de resposta com join em avaliação e agrupando pelo título da avaliação. Como o título está no agrupamento, eu consigo exibir o título e o count dos ids de resposta
+Agora faço um select na tabela de auto correção com join para resposta e join para avaliação, agrupando pelo título da avaliação. Como o título está no agrupamento, eu consigo montar a projeção com o título e o avg da nota da auto correção.
+
